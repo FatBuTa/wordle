@@ -1,0 +1,90 @@
+
+.gameKeyboardRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+.gameKeyboardButton {
+  align-items: center;
+  width: 56px;
+  background-color: #dce1ed;
+  color: #414a5e!important;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex: 1 1;
+  font-size: 17px;
+  font-weight: 700;
+  justify-content: center;
+  margin: 3px;
+  min-height: 46px;
+  padding: 3px;
+  text-decoration: inherit;
+  text-transform: capitalize;
+  transition: .2s;
+}
+
+.gameKeyboardButton:hover{
+  background-image: linear-gradient(90deg, #00C0FF 0%, #00C0FF 100%);
+  animation:slidebg 5s linear infinite;
+}
+
+.gameKeyboardButtonWide {
+  flex: 2 1;
+  padding: 3px;
+}
+
+.overlay {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #222;
+}
+
+.overlayInner {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #222;
+}
+
+.overlayContent {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.05);
+  border-top-color: #fff;
+  animation: spin 1s infinite linear;
+  border-radius: 100%;
+  border-style: solid;
+}
+
+@keyframes spin {
+100% {
+  transform: rotate(360deg);
+}
+}
+
+@media (max-width: 479px) {
+  .gameKeyboardButton {
+      font-size: 14px;
+      width: 30px;
+      min-height: 30px;
+  }
+}
