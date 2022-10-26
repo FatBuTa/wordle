@@ -95,9 +95,11 @@ const Wordle: NextPage = () => {
         }
         guessCorrect.push(...result.filter(r => r.result === 'correct'));
         guessPresent.push(...result.filter(r => r.result === 'present'));
-      } while (end < chars.length);
+      } while (end < chars.length - 1);
 
-      while (guessCorrect.length < size || guessPresent.length > 0) {
+      const guessCorrectBK = [...guessCorrect];
+      // find the correct for present char
+      while (guessCorrect.length < size && guessPresent.length > 0) {
         const presentChar = guessPresent.shift()?.guess;
         const onlyPresentChar = new Array(size).fill(presentChar).join('');
         const result = await WordleService.guessRandomWord(onlyPresentChar, size, seed);
@@ -107,12 +109,24 @@ const Wordle: NextPage = () => {
         guessCorrect.push(...result.filter(r => r.result === 'correct'));
       }
 
+      // find the correct for correct char in case one char display 2 or more time
+      while (guessCorrect.length < size && guessCorrectBK.length > 0) {
+        const correctElement = guessCorrectBK.shift();
+        const correctChar = correctElement?.guess;
+        const onlyCorrectChar = new Array(size).fill(correctChar).join('');
+        const result = await WordleService.guessRandomWord(onlyCorrectChar, size, seed);
+        if (!result?.length) {
+          throw new Error('');
+        }
+        guessCorrect.push(...result.filter(r => r.result === 'correct' && r.slot !== correctElement?.slot) );
+      }
+
       const correctWord = guessCorrect.sort((a, b) => a.slot - b.slot).map(c => c.guess);
 
       setWord(correctWord);
       guessWord(correctWord.join(''));
     } catch (err) {
-      alert(`Sorry! No random word for this seed=${seed}, size=${MIN_LENGTH + level + 1}! restart the game`);
+      alert(`Sorry! No random word for this seed=${seed}, size=${MIN_LENGTH + level - 1}! restart the game`);
       window.location.reload();
     }
     setAutoPlaying(false);
