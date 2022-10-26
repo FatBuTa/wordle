@@ -95,7 +95,7 @@ const Wordle: NextPage = () => {
         }
         guessCorrect.push(...result.filter(r => r.result === 'correct'));
         guessPresent.push(...result.filter(r => r.result === 'present'));
-      } while (end < chars.length - 1);
+      } while (end < chars.length);
 
       const guessCorrectBK = [...guessCorrect];
       // find the correct for present char
@@ -122,6 +122,10 @@ const Wordle: NextPage = () => {
       }
 
       const correctWord = guessCorrect.sort((a, b) => a.slot - b.slot).map(c => c.guess);
+      if (correctWord.length !== size) {
+        alert(`Sorry Can not find guess word! size=${size}, seed=${seed}`);
+        return;
+      }
 
       setWord(correctWord);
       guessWord(correctWord.join(''));
