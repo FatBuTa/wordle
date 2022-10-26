@@ -14,7 +14,6 @@ export async function guessDailyWord(guessWord: string, size: number = 5): Promi
     }
   } catch (error) {
     console.log('error: ', error);
-    throw new Error(error);
   }
   return [];
 }
@@ -27,7 +26,6 @@ export async function guessRandomWord(guessWord: string, size: number, seed: num
     }
   } catch (error) {
     console.log('error: ', error);
-    throw new Error(error);
   }
   return [];
 }

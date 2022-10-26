@@ -90,6 +90,9 @@ const Wordle: NextPage = () => {
           guess = (guess + complementChars).slice(0, size);
         }
         const result = await WordleService.guessRandomWord(guess, size, seed);
+        if (!result?.length) {
+          throw new Error('');
+        }
         guessCorrect.push(...result.filter(r => r.result === 'correct'));
         guessPresent.push(...result.filter(r => r.result === 'present'));
       } while (end < chars.length);
@@ -98,6 +101,9 @@ const Wordle: NextPage = () => {
         const presentChar = guessPresent.shift()?.guess;
         const onlyPresentChar = new Array(size).fill(presentChar).join('');
         const result = await WordleService.guessRandomWord(onlyPresentChar, size, seed);
+        if (!result?.length) {
+          throw new Error('');
+        }
         guessCorrect.push(...result.filter(r => r.result === 'correct'));
       }
 
@@ -107,7 +113,7 @@ const Wordle: NextPage = () => {
       guessWord(correctWord.join(''));
     } catch (err) {
       alert('Sorry! No random word for this seed! restart the game');
-      setLevel(MIN_LEVEL);
+      window.location.reload();
     }
     setAutoPlaying(false);
   };
