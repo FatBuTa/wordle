@@ -2,10 +2,20 @@
   padding: 0 2rem;
 }
 
+.topActions {
+  display: flex;
+  justify-content: space-between;
+}
+
 .difficultyButton {
   margin: 10px 10px 30px 10px;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+.autoPlayButton {
+  margin: 0 10px;
+  background-color: blue;
 }
 
 .active {
@@ -83,6 +93,14 @@
 @media (prefers-color-scheme: dark) {
   .itemDescription {
     color: white;
+  }
+
+  .headlineTitle {
+    color: #435488;
+  }
+  
+  .headlineText {
+    color: #fff;
   }
 }
 

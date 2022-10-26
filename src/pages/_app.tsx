@@ -1,9 +1,9 @@
-import '../styles/globals.css';
+import 'styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Image from 'next/image';
 
-import styles from '../styles/App.module.css'
+import styles from 'styles/App.module.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <footer className={styles.footer}>
         <a
-          href="https://myleet.com"
+          href="https://votee.ai"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -34,4 +34,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp
+export default MyApp;

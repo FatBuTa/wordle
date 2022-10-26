@@ -4,14 +4,14 @@ import styles from './index.module.css';
 type Props = {
   loading: boolean;
   onSelectKey: (key: string) => void;
-}
+};
 
 const Keyboard: FC<Props> = ({ loading, onSelectKey }) => {
 
   return (
     <>
       {loading && <div className={styles.overlayInner}>
-          <div className={styles.overlayContent}><span className={styles.spinner}></span></div>
+          <div className={styles.overlayContent}><span className={styles.spinner} /></div>
         </div>}
       <div className={styles.gameKeyboardRow}>
         <button onClick={() => onSelectKey('q')} className={styles.gameKeyboardButton}>q</button>
@@ -22,7 +22,7 @@ const Keyboard: FC<Props> = ({ loading, onSelectKey }) => {
         <button onClick={() => onSelectKey('y')} className={styles.gameKeyboardButton}>y</button>
         <button onClick={() => onSelectKey('u')} className={styles.gameKeyboardButton}>u</button>
         <button onClick={() => onSelectKey('i')} className={styles.gameKeyboardButton}>i</button>
-        <button onClick={() => onSelectKey('o')} className={`${styles.gameKeyboardButton} ${styles.letterCorrect}`}>o</button>
+        <button onClick={() => onSelectKey('o')} className={styles.gameKeyboardButton}>o</button>
         <button onClick={() => onSelectKey('p')} className={styles.gameKeyboardButton}>p</button>
       </div>
       <div className={styles.gameKeyboardRow}>
