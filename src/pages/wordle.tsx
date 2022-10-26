@@ -112,7 +112,7 @@ const Wordle: NextPage = () => {
       setWord(correctWord);
       guessWord(correctWord.join(''));
     } catch (err) {
-      alert('Sorry! No random word for this seed! restart the game');
+      alert(`Sorry! No random word for this seed=${seed}, size=${MIN_LENGTH + level + 1}! restart the game`);
       window.location.reload();
     }
     setAutoPlaying(false);
